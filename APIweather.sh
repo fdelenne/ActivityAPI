@@ -8,11 +8,11 @@ location="Guadalajara")
 
 
 #Nombre
-echo "Location:  $(echo $data | jq .name | tr -d '"'),  $(echo $data | jq .sys.country | tr -d '"')" > output.html
+echo "Location:  $(echo $data | jq .name | tr -d '"'),  $(echo $data | jq .sys.country | tr -d '"')" >> output.html
 #Temperatura
-echo "Temperature:  $(echo $data | jq .main.temp) "°C" " > output.html
+echo "Temperature:  $(echo $data | jq .main.temp) "°C" " >> output.html
 #Humidity
-echo "Humidity:  $(echo $data | jq .main.humidity) "%" " > output.html
+echo "Humidity:  $(echo $data | jq .main.humidity) "%" " >> output.html
 
  
 
