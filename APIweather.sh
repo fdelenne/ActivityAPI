@@ -28,11 +28,11 @@ then
 lastUpdate=$(date +%s)
 
 #Nombre
-echo "Location:  $(echo $data | jq .name | tr -d '"'),  $(echo $data | jq .sys.country | tr -d '"')"  > 'output.html'
+echo -e "Location:  $(echo $data | jq .name | tr -d '"'),  $(echo $data | jq .sys.country | tr -d '"')"  > 'output.html'
 #Temperatura
-echo "Temperature:  $(echo $data | jq .main.temp) "Celsius" " > 'output.html' 
+echo  -e " Temperature:  $(echo $data | jq .main.temp) "Celsius" " > 'output.html'
 #Humidity
-echo "Humidity:  $(echo $data | jq .main.humidity) "%" " > 'output.html'
+echo -e " Humidity:  $(echo $data | jq .main.humidity) "%" "  > 'output.html'
 
 fi
 
