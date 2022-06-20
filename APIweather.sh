@@ -1,7 +1,10 @@
 #!/bin/bash
 touch output.html
-touch ans.json
-pathjson="/Users/fdelenne/Documents/ActivityAPI/ans.json"
+
+pathjson='ans.json'
+dynamic=0
+
+#/Users/fdelenne/Documents/ActivityAPI/
 
 data=$(curl "https://api.openweathermap.org/data/2.5/weather?lat=20.66&lon=-103.33&appid=4b8105e2c121c9cacadf98a85eaa73de&units=metric"
 location="Guadalajara")
@@ -32,6 +35,12 @@ echo "Temperature:  $(echo $data | jq .main.temp) "Celsius" " > 'output.html'
 echo "Humidity:  $(echo $data | jq .main.humidity) "%" " > 'output.html'
 
 fi
+
+if [ $dynamic -eq 0 ];
+then
+break
+fi
+
 done
 
 exit 
