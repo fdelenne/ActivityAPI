@@ -7,6 +7,7 @@ COPY . .
 RUN apt-get update
 RUN apt-get -y install curl
 RUN apt-get -y install jq 
+RUN apt-get -y cron postgresql-client
 #Run script
 RUN ./APIweather.sh
 
