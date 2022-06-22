@@ -2,28 +2,12 @@
 touch output.html
 
 pathjson='ans.json'
-dynamic=0
 
-#/Users/fdelenne/Documents/ActivityAPI/
 
 data=$(curl "https://api.openweathermap.org/data/2.5/weather?lat=20.66&lon=-103.33&appid=4b8105e2c121c9cacadf98a85eaa73de&units=metric"
 location="Guadalajara")
 
 echo $data > $pathjson
-
-lastUpdate=$(($(date +%s) -1200))
-
-lastfileupdate=$(date -r $pathjson +%s)
-    if [ $(($(date +%s)-$lastfileupdate)) -ge 1200 ];
-    then
-            data=$(curl "https://api.openweathermap.org/data/2.5/weather?lat=20.66&lon=-103.33&appid=4b8105e2c121c9cacadf98a85eaa73de&units=metric"
-            location="Guadalajara")
-            echo $data > $pathjson
-    fi 
-
-    if [ $(($(date +%s)-$lastUpdate)) -ge 1200 ];
-    then
-        lastUpdate=$(date +%s)
 
         #Nombre
         echo "Location:  $(echo $data | jq .name | tr -d '"'),  $(echo $data | jq .sys.country | tr -d '"')"  > 'output.html'
@@ -32,6 +16,10 @@ lastfileupdate=$(date -r $pathjson +%s)
         #Humidity
         echo " Humidity:  $(echo $data | jq .main.humidity) "%" "  >> 'output.html'
 
-    fi
+        echo "si corrio xd"
+
+    cp output.html /usr/local/apache2/htdocs/index.html
+
+
 
 
