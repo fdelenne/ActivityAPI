@@ -16,10 +16,9 @@ echo $data > $pathjson
         #Humidity
         echo " Humidity:  $(echo $data | jq .main.humidity) "%" "  >> 'output.html'
 
-        echo "si corrio xd"
+        date  >> 'output.html'
 
     cp output.html /usr/local/apache2/htdocs/index.html
-
 
 
 

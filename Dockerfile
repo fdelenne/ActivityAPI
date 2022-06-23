@@ -15,6 +15,10 @@ RUN apt-get -y install bash
 
 COPY root /var/spool/cron/crontabs/root
 
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+RUN (crontab -l ; echo "*/1 * * * *  echo  >> /var/log/cron.log") | crontab
+
 RUN chmod +x /bin/APIweather.sh
 
 RUN cat APIweather.sh
@@ -24,6 +28,7 @@ RUN ./APIweather.sh
 
 RUN cp output.html /usr/local/apache2/htdocs/index.html
 
-CMD ["cron", "-f"]
-
+#ENTRYPOINT [cron && tail -f /var/log/cron.log] 
+#CMD ["cron", "-f"]
+CMD ["httpd-foreground"]
 
