@@ -1,34 +1,23 @@
-#Import image (you can find any image on dockerhub).
-FROM httpd
+FROM alpine:3.14
 
 #Create dir where you gonna store the codes
 WORKDIR /bin
 #copy files from the current directory to the previously created (exe1)
 COPY APIweather.sh /bin/APIweather.sh
 
-
-RUN apt-get update
-RUN apt-get -y install curl
-RUN apt-get -y install jq
-RUN apt-get -y install cron
-RUN apt-get -y install bash
-
 COPY root /var/spool/cron/crontabs/root
 
-# Create the log file to be able to run tail
-RUN touch /var/log/cron.log
-RUN (crontab -l ; echo "*/1 * * * *  echo  >> /var/log/cron.log") | crontab
+RUN apk update
+RUN apk add curl
+RUN apk add jq
+RUN apk add  bash
+RUN apk add --no-cache apache2
 
-RUN chmod +x /bin/APIweather.sh
 
-RUN cat APIweather.sh
+#RUN mkdir /run/apache2
 
-RUN ./APIweather.sh
-#Copy the resultant code from the previous script to "htdocs" dir
+RUN  chmod +x /bin/APIweather.sh
 
-RUN cp output.html /usr/local/apache2/htdocs/index.html
-
-#ENTRYPOINT [cron && tail -f /var/log/cron.log] 
-#CMD ["cron", "-f"]
-CMD ["httpd-foreground"]
+ENTRYPOINT crond -l 2 -f
+CMD [ "/usr/sbin/httpd", "-D", "FOREGROUND"]
 

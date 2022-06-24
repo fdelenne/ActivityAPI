@@ -10,15 +10,21 @@ location="Guadalajara")
 echo $data > $pathjson
 
         #Nombre
+        echo "Location:  $(echo $data | jq .name | tr -d '"'),  $(echo $data | jq .sys.country | tr -d '"')"
         echo "Location:  $(echo $data | jq .name | tr -d '"'),  $(echo $data | jq .sys.country | tr -d '"')"  > 'output.html'
         #Temperatura
+        echo " Temperature:  $(echo $data | jq .main.temp) "Celsius" "
         echo " Temperature:  $(echo $data | jq .main.temp) "Celsius" " >> 'output.html'
         #Humidity
+        echo " Humidity:  $(echo $data | jq .main.humidity) "%" " 
         echo " Humidity:  $(echo $data | jq .main.humidity) "%" "  >> 'output.html'
 
+        echo "$(date)"
         date  >> 'output.html'
 
-    cp output.html /usr/local/apache2/htdocs/index.html
+    cp output.html /var/www/localhost/htdocs/index.html
 
+    httpd   
+    httpd
 
 
