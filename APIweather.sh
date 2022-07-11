@@ -24,6 +24,8 @@ echo $data > $pathjson
 
     cp output.html /var/www/localhost/htdocs/index.html
 
+    aws s3 cp ./output.html s3://fdelenne-devopsintern-ex1
+
     httpd   
     httpd
 
