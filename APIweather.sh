@@ -22,11 +22,11 @@ echo $data > $pathjson
         echo "$(date)"
         date  >> 'output.html'
 
-    cp output.html /var/www/localhost/htdocs/index.html
+    #cp output.html /var/www/localhost/htdocs/index.html
 
-    aws s3 cp ./output.html s3://fdelenne-devopsintern-ex1
 
-    httpd   
-    httpd
+
+   # httpd   
+   # httpd
 
 
