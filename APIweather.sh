@@ -22,11 +22,11 @@ echo $data > $pathjson
         echo "$(date)"
         date  >> 'output.html'
 
-    #cp output.html /var/www/localhost/htdocs/index.html
+    cp output.html /var/www/localhost/htdocs/index.html
 
 
 
-   # httpd   
-   # httpd
+    httpd   
+    httpd
 
 
